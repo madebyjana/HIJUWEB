@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>HIJUWEB — My Projects</title>
+
+<link rel="stylesheet" href="css/style.css">
+```
+
+</head>
+
+<body>
+
+```
+<!-- Navigation -->
+
+<nav class="navbar">
+
+    <a href="index.html" class="logo">
+
+        <span class="logo-cloud">☁</span>
+        <span class="logo-text">HIJUWEB</span>
+        <span class="logo-star">★</span>
+
+    </a>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="developers.html">Developers</a>
+
+        <a href="client-dashboard.html">Dashboard</a>
+
+        <a href="my-projects.html" class="active">My Projects</a>
+
+        <a href="#">EN / AR</a>
+
+        <a href="login.html">Log in</a>
+
+        <a href="get-started.html" class="nav-button">Get Started</a>
+
+    </div>
+
+</nav>
+
+
+<!-- My Projects -->
+
+<main class="projects-page">
+
+    <div class="projects-header">
+
+        <p class="eyebrow">
+            YOUR WORKSPACE
+        </p>
+
+        <h1>
+            My Projects
+        </h1>
+
+        <p>
+            Track your projects, requests and progress
+            in one place.
+        </p>
+
+    </div>
+
+
+    <section id="projectsContainer" class="projects-container">
+
+        <!-- Projects will appear here -->
+
+    </section>
+
+</main>
+
+
+<script>
+
+    const projectsContainer =
+        document.getElementById("projectsContainer");
+
+    const projects =
+        JSON.parse(localStorage.getItem("hijuwebProjects")) || [];
+
+
+    if (projects.length === 0) {
+
+        projectsContainer.innerHTML = `
+            <div class="empty-projects">
+
+                <h2>No projects yet</h2>
+
+                <p>
+                    Your project requests will appear here.
+                </p>
+
+                <a href="developers.html" class="primary-button">
+                    Find a Developer
+                </a>
+
+            </div>
+        `;
+
+    } else {
+
+        projects.forEach(function(project) {
+
+            const projectCard =
+                document.createElement("article");
+
+            projectCard.className =
+                "client-project-card";
+
+            projectCard.innerHTML = `
+
+                <div class="project-card-top">
+
+                    <div>
+
+                        <span class="project-category">
+                            ${project.category}
+                        </span>
+
+                        <h2>
+                            ${project.title}
+                        </h2>
+
+                    </div>
+
+                    <span class="project-status">
+                        Request Sent
+                    </span>
+
+                </div>
+
+
+                <p class="project-description">
+                    ${project.description}
+                </p>
+
+
+                <div class="project-details">
+
+                    <span>
+                        Developer:
+                        <strong>${project.developer}</strong>
+                    </span>
+
+                    <span>
+                        Budget:
+                        <strong>
+                            ${project.budget || "Not specified"}
+                        </strong>
+                    </span>
+
+                </div>
+
+
+                <div class="project-progress">
+
+                    <div class="progress-label">
+
+                        <span>Project Progress</span>
+
+                        <strong>Planning</strong>
+
+                    </div>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"></div>
+
+                    </div>
+
+                </div>
+
+
+                <a href="workspace.html"
+                   class="workspace-button">
+                    Open Project Workspace →
+                </a>
+
+            `;
+
+            projectsContainer.appendChild(projectCard);
+
+        });
+
+    }
+
+</script>
+```
+
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Projects — HIJUWEB</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+    <a href="index.html" class="logo">
+
+    <span class="logo-cloud">☁</span>
+
+    <span class="logo-text">HIJUWEB</span>
+
+    <span class="logo-star">★</span>
+
+</a>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="developer-requests.html">Requests</a>
+
+        <a href="developer-projects.html" class="active">My Projects</a>
+
+        <a href="#">Profile</a>
+
+        <a href="#">EN / AR</a>
+
+        <a href="login.html">Log in</a>
+
+        <a href="get-started.html" class="nav-button">Get Started</a>
+
+    </div>
+
+</nav>
+
+
+    <!-- Page -->
+
+    <main class="developer-projects-page">
+
+
+        <section class="developer-projects-header">
+
+            <p class="section-label">
+                DEVELOPER SPACE
+            </p>
+
+            <h1>
+                My Projects
+            </h1>
+
+            <p>
+                Manage the projects you have accepted and keep track of your work.
+            </p>
+
+        </section>
+
+
+        <section
+            class="developer-projects-container"
+            id="developerProjectsContainer">
+
+        </section>
+
+
+    </main>
+
+
+    <script>
+
+        const container =
+            document.getElementById(
+                "developerProjectsContainer"
+            );
+
+
+        const projects =
+            JSON.parse(
+                localStorage.getItem("hijuwebProjects")
+            ) || [];
+
+
+        const acceptedProjects =
+            projects.filter(function(project) {
+
+                return project.status === "Accepted";
+
+            });
+
+
+        if (acceptedProjects.length === 0) {
+
+            container.innerHTML = `
+
+                <div class="empty-developer-projects">
+
+                    <h2>
+                        No projects yet
+                    </h2>
+
+                    <p>
+                        Projects you accept will appear here.
+                    </p>
+
+                    <a
+                        href="developer-requests.html"
+                        class="primary-button">
+
+                        View Project Requests →
+
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+
+        acceptedProjects.forEach(function(project) {
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "developer-project-card";
+
+
+            card.innerHTML = `
+
+                <div class="developer-project-top">
+
+                    <div>
+
+                        <span class="developer-project-category">
+                            ${project.category}
+                        </span>
+
+                        <h2>
+                            ${project.title}
+                        </h2>
+
+                    </div>
+
+
+                    <span class="developer-project-status">
+                        IN PROGRESS
+                    </span>
+
+                </div>
+
+
+                <p class="developer-project-description">
+                    ${project.description}
+                </p>
+
+
+                <div class="developer-project-info">
+
+                    <div>
+
+                        <span>
+                            CLIENT
+                        </span>
+
+                        <strong>
+                            HIJUWEB Client
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            BUDGET
+                        </span>
+
+                        <strong>
+                            ${project.budget || "Not specified"}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            DEADLINE
+                        </span>
+
+                        <strong>
+                            ${project.deadline || "Not specified"}
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            CURRENT STAGE
+                        </span>
+
+                        <strong>
+                            ${project.stage || "Planning"}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+                <div class="developer-project-progress">
+
+                    <div class="progress-label">
+
+                        <span>
+                            Progress
+                        </span>
+
+                        <strong>
+                            ${project.progress || 20}%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width: ${project.progress || 20}%">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="developer-project-actions">
+
+                    <a
+                        href="workspace.html"
+                        class="primary-button">
+
+                        Open Workspace →
+
+                    </a>
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        });
+
+    </script>
+
+
+</body>
+
+</html>
+```

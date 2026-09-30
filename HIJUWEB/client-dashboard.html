@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Client Dashboard — HIJUWEB</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+   <a href="index.html" class="logo">
+
+    <span class="logo-cloud">☁</span>
+
+    <span class="logo-text">HIJUWEB</span>
+
+    <span class="logo-star">★</span>
+
+</a>
+    </a>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="developers.html">Developers</a>
+
+        <a href="client-dashboard.html" class="active">Dashboard</a>
+
+        <a href="my-projects.html">My Projects</a>
+<a href="#">EN / AR</a>
+
+<a href="login.html">Log in</a>
+
+<a href="get-started.html" class="nav-button">Get Started</a>
+    </div>
+
+</nav>
+
+
+    <!-- Dashboard -->
+
+    <main class="client-dashboard">
+
+
+        <section class="dashboard-header">
+
+            <div>
+
+                <p class="section-label">
+                    CLIENT SPACE
+                </p>
+
+                <h1>
+                    Welcome back.
+                </h1>
+
+                <p>
+                    Keep track of your projects, connect with developers,
+                    and turn your ideas into real experiences.
+                </p>
+
+            </div>
+
+
+            <a
+                href="developers.html"
+                class="primary-button">
+
+                Find a Developer →
+
+            </a>
+
+        </section>
+
+
+        <!-- Stats -->
+
+        <section class="dashboard-stats">
+
+            <div class="dashboard-stat">
+
+                <span>
+                    TOTAL PROJECTS
+                </span>
+
+                <strong id="totalProjects">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="dashboard-stat">
+
+                <span>
+                    IN PROGRESS
+                </span>
+
+                <strong id="activeProjects">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="dashboard-stat">
+
+                <span>
+                    COMPLETED
+                </span>
+
+                <strong id="completedProjects">
+                    0
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- Recent Project -->
+
+        <section class="dashboard-section">
+
+            <div class="dashboard-section-heading">
+
+                <div>
+
+                    <p class="section-label">
+                        RECENT ACTIVITY
+                    </p>
+
+                    <h2>
+                        Your Projects
+                    </h2>
+
+                </div>
+
+
+                <a href="my-projects.html">
+                    View All →
+                </a>
+
+            </div>
+
+
+            <div
+                class="dashboard-project"
+                id="dashboardProject">
+
+            </div>
+
+        </section>
+
+
+        <!-- Quick Actions -->
+
+        <section class="dashboard-section">
+
+            <p class="section-label">
+                QUICK ACTIONS
+            </p>
+
+            <div class="dashboard-actions">
+
+                <a
+                    href="developers.html"
+                    class="dashboard-action">
+
+                    <span class="action-icon">
+                        ★
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Find a Developer
+                        </strong>
+
+                        <p>
+                            Explore developers and portfolios.
+                        </p>
+
+                    </div>
+
+                </a>
+
+
+                <a
+                    href="my-projects.html"
+                    class="dashboard-action">
+
+                    <span class="action-icon">
+                        →
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            My Projects
+                        </strong>
+
+                        <p>
+                            Manage your current projects.
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script>
+
+
+        const projects =
+            JSON.parse(
+                localStorage.getItem("hijuwebProjects")
+            ) || [];
+
+
+        /* Stats */
+
+        document.getElementById(
+            "totalProjects"
+        ).textContent = projects.length;
+
+
+        const activeProjects =
+            projects.filter(function(project) {
+
+                return project.status === "Accepted";
+
+            });
+
+
+        document.getElementById(
+            "activeProjects"
+        ).textContent = activeProjects.length;
+
+
+        const completedProjects =
+            projects.filter(function(project) {
+
+                return project.status === "Completed";
+
+            });
+
+
+        document.getElementById(
+            "completedProjects"
+        ).textContent = completedProjects.length;
+
+
+        /* Recent Project */
+
+        const projectContainer =
+            document.getElementById(
+                "dashboardProject"
+            );
+
+
+        if (projects.length === 0) {
+
+            projectContainer.innerHTML = `
+
+                <div class="dashboard-empty">
+
+                    <h3>
+                        No projects yet
+                    </h3>
+
+                    <p>
+                        Start by finding a developer for your next idea.
+                    </p>
+
+                    <a
+                        href="developers.html"
+                        class="primary-button">
+
+                        Explore Developers →
+
+                    </a>
+
+                </div>
+
+            `;
+
+        } else {
+
+
+            const project =
+                projects[projects.length - 1];
+
+
+            const progress =
+                project.progress || 20;
+
+
+            projectContainer.innerHTML = `
+
+                <div class="dashboard-project-top">
+
+                    <div>
+
+                        <span class="project-category">
+                            ${project.category}
+                        </span>
+
+                        <h3>
+                            ${project.title}
+                        </h3>
+
+                    </div>
+
+
+                    <span class="project-status">
+                        ${project.status || "Request Sent"}
+                    </span>
+
+                </div>
+
+
+                <p>
+                    ${project.description}
+                </p>
+
+
+                <div class="dashboard-project-info">
+
+                    <span>
+                        Developer:
+                        <strong>
+                            ${project.developer || "Not assigned"}
+                        </strong>
+                    </span>
+
+                    <span>
+                        Stage:
+                        <strong>
+                            ${project.stage || "Planning"}
+                        </strong>
+                    </span>
+
+                    <span>
+                        Progress:
+                        <strong>
+                            ${progress}%
+                        </strong>
+                    </span>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        class="progress-fill"
+                        style="width: ${progress}%">
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="workspace.html"
+                    class="dashboard-workspace">
+
+                    Open Project Workspace →
+
+                </a>
+
+            `;
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
+```

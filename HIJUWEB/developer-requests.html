@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Project Requests — HIJUWEB</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <<nav class="navbar">
+
+   <a href="index.html" class="logo">
+
+    <span class="logo-cloud">☁</span>
+
+    <span class="logo-text">HIJUWEB</span>
+
+    <span class="logo-star">★</span>
+
+</a>
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="developer-requests.html" class="active">Requests</a>
+
+        <a href="developer-projects.html">My Projects</a>
+
+        <a href="#">Profile</a>
+
+        <a href="#">EN / AR</a>
+
+        <a href="login.html">Log in</a>
+
+        <a href="get-started.html" class="nav-button">Get Started</a>
+
+    </div>
+
+</nav>
+
+
+    <!-- Page Header -->
+
+    <main class="developer-requests-page">
+
+        <section class="developer-requests-header">
+
+            <p class="section-label">
+                DEVELOPER SPACE
+            </p>
+
+            <h1>
+                Project Requests
+            </h1>
+
+            <p>
+                Discover projects that match your skills and turn ideas into real experiences.
+            </p>
+
+        </section>
+
+
+        <!-- Requests -->
+
+        <section class="developer-requests-container" id="requestsContainer">
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        const requestsContainer =
+            document.getElementById("requestsContainer");
+
+
+        const projects =
+            JSON.parse(localStorage.getItem("hijuwebProjects")) || [];
+
+
+        if (projects.length === 0) {
+
+            requestsContainer.innerHTML = `
+
+                <div class="empty-requests">
+
+                    <h2>No project requests yet</h2>
+
+                    <p>
+                        New client requests will appear here.
+                    </p>
+
+                </div>
+
+            `;
+
+        } else {
+
+            projects.forEach(function(project, index) {
+
+                const projectCard = document.createElement("div");
+
+                projectCard.className = "developer-request-card";
+
+
+                projectCard.innerHTML = `
+
+                    <div class="developer-request-top">
+
+                        <div>
+
+                            <span class="request-category">
+                                ${project.category}
+                            </span>
+
+                            <h2>
+                                ${project.title}
+                            </h2>
+
+                        </div>
+
+                        <span class="request-status">
+                            NEW REQUEST
+                        </span>
+
+                    </div>
+
+
+                    <p class="developer-request-description">
+                        ${project.description}
+                    </p>
+
+
+                    <div class="developer-request-details">
+
+                        <div>
+                            <span>CLIENT</span>
+                            <strong>HIJUWEB Client</strong>
+                        </div>
+
+                        <div>
+                            <span>BUDGET</span>
+                            <strong>${project.budget || "Not specified"}</strong>
+                        </div>
+
+                        <div>
+                            <span>DEADLINE</span>
+                            <strong>${project.deadline || "Not specified"}</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="developer-request-actions">
+
+                        <button
+                            class="secondary-button"
+                            onclick="viewRequest(${index})">
+
+                            View Details
+
+                        </button>
+
+
+                        <button
+                            class="primary-button"
+                            onclick="acceptProject(${index})">
+
+                            Accept Project →
+
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                requestsContainer.appendChild(projectCard);
+
+            });
+
+        }
+
+
+        function viewRequest(index) {
+
+            const project = projects[index];
+
+            alert(
+                "Project: " + project.title +
+                "\\n\\n" +
+                "Description: " + project.description +
+                "\\n\\n" +
+                "Reference: " + (project.reference || "None")
+            );
+
+        }
+
+
+        function acceptProject(index) {
+
+            const project = projects[index];
+
+            project.status = "Accepted";
+
+            project.progress = 20;
+
+            project.stage = "Planning";
+
+
+            projects[index] = project;
+
+
+            localStorage.setItem(
+                "hijuwebProjects",
+                JSON.stringify(projects)
+            );
+
+
+            alert("Project accepted successfully!");
+
+
+            window.location.href = "developer-projects.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```

@@ -1,0 +1,146 @@
+# Query: client
+# ContextLines: 1
+
+40 results - 12 files
+
+client-dashboard.html:
+   9  
+  10:     <title>Client Dashboard — HIJUWEB</title>
+  11  
+
+  49  
+  50:         <a href="client-dashboard.html" class="active">Dashboard</a>
+  51  
+
+  64  
+  65:     <main class="client-dashboard">
+  66  
+
+  72                  <p class="section-label">
+  73:                     CLIENT SPACE
+  74                  </p>
+
+developer-projects.html:
+  190                          <span>
+  191:                             CLIENT
+  192                          </span>
+
+  194                          <strong>
+  195:                             HIJUWEB Client
+  196                          </strong>
+
+developer-requests.html:
+  102                      <p>
+  103:                         New client requests will appear here.
+  104                      </p>
+
+  149                          <div>
+  150:                             <span>CLIENT</span>
+  151:                             <strong>HIJUWEB Client</strong>
+  152                          </div>
+
+developers.html:
+  36  
+  37:         <a href="client-dashboard.html">
+  38              Dashboard
+
+get-started.html:
+   32  
+   33:             <a href="client-dashboard.html">Dashboard</a>
+   34  
+
+   67  
+   68:             <!-- Client -->
+   69  
+
+   71  
+   72:                 <div class="role-icon client-icon">
+   73                      ★
+
+   78                      <span class="role-label">
+   79:                         CLIENT
+   80                      </span>
+
+   91                      <span class="role-link">
+   92:                         Continue as Client →
+   93                      </span>
+
+  118                      <p>
+  119:                         Discover projects, connect with clients,
+  120                          and bring creative ideas to life.
+
+index.html:
+  43              <a href="developers.html">Developers</a>
+  44:             <a href="client-dashboard.html">Dashboard</a>
+  45              <a href="my-projects.html">My Projects</a>
+
+  90  
+  91:                 <!-- Client -->
+  92                  <div class="visual-card card-star">
+
+  98                      <div>
+  99:                         <span class="visual-label">CLIENT</span>
+  100                          <strong>IDEA</strong>
+
+login.html:
+  32  
+  33:             <a href="client-dashboard.html">Dashboard</a>
+  34  
+
+  62  
+  63:                 <!-- Client -->
+  64  
+  65:                 <a href="client-dashboard.html" class="login-role">
+  66  
+  67:                     <div class="role-icon client-icon">
+  68                          ★
+
+  72                          <span class="role-label">
+  73:                             CLIENT
+  74                          </span>
+
+  76                          <h2>
+  77:                             Continue as Client
+  78                          </h2>
+
+my-projects.html:
+   35  
+   36:         <a href="client-dashboard.html">Dashboard</a>
+   37  
+
+  113  
+  114:                 projectCard.className = "client-project-card";
+  115  
+
+profile.html:
+  37  
+  38:         <a href="client-dashboard.html">
+  39              Dashboard
+
+request.html:
+  38  
+  39:         <a href="client-dashboard.html">
+  40              Dashboard
+
+workspace.html:
+  38  
+  39:         <a href="client-dashboard.html">
+  40              Dashboard
+
+css\style.css:
+   825  .workspace-page,
+   826: .client-dashboard,
+   827  .dashboard-page,
+
+  1284  .dashboard-page,
+  1285: .client-dashboard {
+  1286      max-width: 1100px;
+
+  1412  
+  1413: .client-icon {
+  1414      color: var(--yellow);
+
+  1626  
+  1627: /* Client */
+  1628  .star-icon:hover {
+

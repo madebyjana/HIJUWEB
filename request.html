@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HIJUWEB — Request a Project</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+   <a href="index.html" class="logo">
+
+    <span class="logo-cloud">☁</span>
+
+    <span class="logo-text">HIJUWEB</span>
+
+    <span class="logo-star">★</span>
+
+</a>
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="developers.html">
+            Developers
+        </a>
+
+        <a href="client-dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="my-projects.html">
+            My Projects
+        </a>
+
+        <a href="#">
+            EN / AR
+        </a>
+
+        <a href="login.html">
+            Log in
+        </a>
+
+        <a href="get-started.html" class="nav-button">
+            Get Started
+        </a>
+
+    </div>
+
+</nav>
+
+
+    <!-- Request Project -->
+
+    <main class="request-page">
+
+        <div class="request-header">
+
+            <p class="eyebrow">
+                START SOMETHING REAL
+            </p>
+
+            <h1>
+                Request a Project
+            </h1>
+
+            <p>
+                Tell Alex what you have in mind and start
+                turning your idea into something real.
+            </p>
+
+        </div>
+
+
+        <section class="request-card">
+
+            <div class="selected-developer">
+
+                <div class="request-avatar">
+                    AM
+                </div>
+
+                <div>
+                    <span>REQUESTING PROJECT FROM</span>
+
+                    <h2>
+                        Alex Morgan
+                    </h2>
+
+                    <p>
+                        Full-Stack Developer
+                    </p>
+                </div>
+
+            </div>
+
+
+            <form id="projectRequestForm">
+
+                <div class="form-group">
+
+                    <label for="projectTitle">
+                        Project Title
+                    </label>
+
+                    <input
+                        type="text"
+                        id="projectTitle"
+                        placeholder="e.g. E-Commerce Website"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="projectCategory">
+                        Category
+                    </label>
+
+                    <select id="projectCategory" required>
+
+                        <option value="">
+                            Select a category
+                        </option>
+
+                        <option value="E-Commerce">
+                            E-Commerce
+                        </option>
+
+                        <option value="Business">
+                            Business
+                        </option>
+
+                        <option value="Portfolio">
+                            Portfolio
+                        </option>
+
+                        <option value="Education">
+                            Education
+                        </option>
+
+                        <option value="Technology">
+                            Technology
+                        </option>
+
+                        <option value="Entertainment">
+                            Entertainment
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="projectDescription">
+                        Project Description
+                    </label>
+
+                    <textarea
+                        id="projectDescription"
+                        rows="6"
+                        placeholder="Describe your idea, goals, features or anything the developer should know..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="projectBudget">
+                            Estimated Budget
+                        </label>
+
+                        <select id="projectBudget">
+
+                            <option value="">
+                                Select budget
+                            </option>
+
+                            <option>
+                                Under $500
+                            </option>
+
+                            <option>
+                                $500 – $1,000
+                            </option>
+
+                            <option>
+                                $1,000 – $2,500
+                            </option>
+
+                            <option>
+                                $2,500+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="projectDeadline">
+                            Desired Deadline
+                        </label>
+
+                        <input
+                            type="date"
+                            id="projectDeadline"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="projectReference">
+                        Reference / Inspiration
+                    </label>
+
+                    <input
+                        type="text"
+                        id="projectReference"
+                        placeholder="Optional link or reference"
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-button request-submit"
+                >
+                    Send Project Request →
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        const form = document.getElementById("projectRequestForm");
+
+        form.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const project = {
+
+                title: document.getElementById("projectTitle").value,
+
+                category: document.getElementById("projectCategory").value,
+
+                description: document.getElementById("projectDescription").value,
+
+                budget: document.getElementById("projectBudget").value,
+
+                deadline: document.getElementById("projectDeadline").value,
+
+                reference: document.getElementById("projectReference").value,
+
+                developer: "Alex Morgan"
+
+            };
+
+
+            const projects =
+                JSON.parse(localStorage.getItem("hijuwebProjects")) || [];
+
+
+            projects.push(project);
+
+
+            localStorage.setItem(
+                "hijuwebProjects",
+                JSON.stringify(projects)
+            );
+
+
+            window.location.href = "my-projects.html";
+
+        });
+
+    </script>
+
+</body>
+</html>
+```
+
